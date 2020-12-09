@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Welcome";
+}
+<script type="text/ng-template" id="main_layout.htm">
+    <div class="container">
+        <h2>Policy Table</h2>
+        <p>GenLife Assesment, Jacques Du Plooy </p>
+        <table class="table table-striped" id="pdfTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Policy Number</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Date Created</th>
+                    <th>View</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in policies">
+                    <td>{{p.ID}}</td>
+                    <td>{{p.PolicyNmber}}</td>
+                    <td>{{p.ClientName}}</td>
+                    <td>{{p.ClientSurname}}</td>
+                    <td>{{p.DateJoined}}</td>
+                    <td><a ui-sref="view({id:p.ID})"> View</a></td>
+                    <td> <a ui-sref="update({id:p.ID})"> Update</a></td>
+                    <td><a ng-click="DeletePolicy(p.ID)"> Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <a class="btn btn-info" ui-sref="main"> Main</a>
+        <a class="btn btn-info" ui-sref="create({id:1})"> Create</a>
+        <a class="btn btn-info" ng-click="Pdf()"> PDF</a>
+    </div>
+</script>
+
+<script type="text/ng-template" id="view.htm">
+    @Html.Partial("_view")
+</script>
+
+<script type="text/ng-template" id="update.htm">
+    @Html.Partial("_update")
+</script>
+
+<script type="text/ng-template" id="create.htm">
+    @Html.Partial("_create")
+</script>
+
+<!--Render the views here-->
+<ui-view></ui-view>
